@@ -1,2 +1,2 @@
-# getenv
-Parse environment variables for Go
+# Parse environment variables for Go
+[![GoDoc](https://godoc.org/github.com/powerman/getenv?status.svg)](http://godoc.org/github.com/powerman/getenv) [![Go Report Card](https://goreportcard.com/badge/github.com/powerman/getenv)](https://goreportcard.com/report/github.com/powerman/getenv) [![CircleCI](https://circleci.com/gh/powerman/getenv.svg?style=svg)](https://circleci.com/gh/powerman/getenv) [![Coverage Status](https://coveralls.io/repos/github/powerman/getenv/badge.svg?branch=master)](https://coveralls.io/github/powerman/getenv?branch=master)
