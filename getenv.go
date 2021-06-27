@@ -8,6 +8,8 @@ import (
 	"time"
 )
 
+const parseBits = 64
+
 var lastErr error //nolint:gochecknoglobals // Exported.
 
 // LastErr returns last error happens while parsing environment variable
@@ -59,7 +61,7 @@ func Float(name string, def float64) float64 {
 	if value == "" {
 		return def
 	}
-	v, err := strconv.ParseFloat(value, 64)
+	v, err := strconv.ParseFloat(value, parseBits)
 	if err != nil {
 		lastErr = fmt.Errorf("parse $%s=%q as float: %w", name, value, err)
 		return def

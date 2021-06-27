@@ -6,6 +6,7 @@ import (
 	"time"
 
 	"github.com/powerman/check"
+
 	"github.com/powerman/getenv"
 )
 
