@@ -1,7 +1,6 @@
 package getenv_test
 
 import (
-	"os"
 	"testing"
 	"time"
 
@@ -11,15 +10,10 @@ import (
 )
 
 func Test(t *testing.T) {
-	os.Unsetenv("UNSET")
-	os.Setenv("EMPTY", "")
-	os.Setenv("BOOL", "false")
-	os.Setenv("DUR", "1m")
-	os.Setenv("FLOAT", "1.23")
-	os.Setenv("INT", "42")
-	os.Setenv("STR", "text")
+	t.Parallel()
 
 	t.Run("Bool", func(tt *testing.T) {
+		tt.Parallel()
 		t := check.T(tt)
 		t.Equal(getenv.Bool("UNSET", true), true)
 		t.Equal(getenv.Bool("EMPTY", true), true)
@@ -29,6 +23,7 @@ func Test(t *testing.T) {
 		t.Match(getenv.LastErr(), "parse")
 	})
 	t.Run("Dur", func(tt *testing.T) {
+		tt.Parallel()
 		t := check.T(tt)
 		t.Equal(getenv.Dur("UNSET", 3*time.Second), 3*time.Second)
 		t.Equal(getenv.Dur("EMPTY", 3*time.Second), 3*time.Second)
@@ -38,6 +33,7 @@ func Test(t *testing.T) {
 		t.Match(getenv.LastErr(), "parse")
 	})
 	t.Run("Float", func(tt *testing.T) {
+		tt.Parallel()
 		t := check.T(tt)
 		t.Equal(getenv.Float("UNSET", 0.5), 0.5)
 		t.Equal(getenv.Float("EMPTY", 0.5), 0.5)
@@ -47,6 +43,7 @@ func Test(t *testing.T) {
 		t.Match(getenv.LastErr(), "parse")
 	})
 	t.Run("Int", func(tt *testing.T) {
+		tt.Parallel()
 		t := check.T(tt)
 		t.Equal(getenv.Int("UNSET", 5), 5)
 		t.Equal(getenv.Int("EMPTY", 5), 5)
@@ -56,6 +53,7 @@ func Test(t *testing.T) {
 		t.Match(getenv.LastErr(), "parse")
 	})
 	t.Run("Str", func(tt *testing.T) {
+		tt.Parallel()
 		t := check.T(tt)
 		t.Equal(getenv.Str("UNSET", "def"), "def")
 		t.Equal(getenv.Str("EMPTY", "def"), "def")

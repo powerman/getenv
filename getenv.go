@@ -5,20 +5,32 @@ import (
 	"fmt"
 	"os"
 	"strconv"
+	"sync"
 	"time"
 )
 
 const parseBits = 64
 
-var lastErr error //nolint:gochecknoglobals // Exported.
+var (
+	lastErr   error        //nolint:gochecknoglobals,errname // Exported.
+	lastErrMu sync.RWMutex //nolint:gochecknoglobals // Guards lastErr.
+)
 
 // LastErr returns last error happens while parsing environment variable
 // by any function of this package. Following calls will return nil until
 // new error happens.
 func LastErr() error {
+	lastErrMu.Lock()
 	err := lastErr
 	lastErr = nil
+	lastErrMu.Unlock()
 	return err
+}
+
+func setLastErr(err error) {
+	lastErrMu.Lock()
+	lastErr = err
+	lastErrMu.Unlock()
 }
 
 // Bool returns value of environment variable name as a bool.
@@ -31,15 +43,15 @@ func Bool(name string, def bool) bool {
 	}
 	b, err := strconv.ParseBool(value)
 	if err != nil {
-		lastErr = fmt.Errorf("parse $%s=%q as bool: %w", name, value, err)
+		setLastErr(fmt.Errorf("parse $%s=%q as bool: %w", name, value, err))
 		return def
 	}
 	return b
 }
 
-// Dur returns value of environment variable name as a time.Duration.
+// Dur returns value of environment variable name as a [time.Duration].
 // It will return def if environment variable is missing, empty or
-// failed to parse as a time.Duration.
+// failed to parse as a [time.Duration].
 func Dur(name string, def time.Duration) time.Duration {
 	value := os.Getenv(name)
 	if value == "" {
@@ -47,7 +59,7 @@ func Dur(name string, def time.Duration) time.Duration {
 	}
 	dur, err := time.ParseDuration(value)
 	if err != nil {
-		lastErr = fmt.Errorf("parse $%s=%q as duration: %w", name, value, err)
+		setLastErr(fmt.Errorf("parse $%s=%q as duration: %w", name, value, err))
 		return def
 	}
 	return dur
@@ -63,7 +75,7 @@ func Float(name string, def float64) float64 {
 	}
 	v, err := strconv.ParseFloat(value, parseBits)
 	if err != nil {
-		lastErr = fmt.Errorf("parse $%s=%q as float: %w", name, value, err)
+		setLastErr(fmt.Errorf("parse $%s=%q as float: %w", name, value, err))
 		return def
 	}
 	return v
@@ -79,7 +91,7 @@ func Int(name string, def int) int {
 	}
 	i, err := strconv.Atoi(value)
 	if err != nil {
-		lastErr = fmt.Errorf("parse $%s=%q as int: %w", name, value, err)
+		setLastErr(fmt.Errorf("parse $%s=%q as int: %w", name, value, err))
 		return def
 	}
 	return i

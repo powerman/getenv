@@ -1,2 +1,13 @@
 # Parse environment variables for Go
-[![GoDoc](https://godoc.org/github.com/powerman/getenv?status.svg)](http://godoc.org/github.com/powerman/getenv) [![Go Report Card](https://goreportcard.com/badge/github.com/powerman/getenv)](https://goreportcard.com/report/github.com/powerman/getenv) [![CircleCI](https://circleci.com/gh/powerman/getenv.svg?style=svg)](https://circleci.com/gh/powerman/getenv) [![Coverage Status](https://coveralls.io/repos/github/powerman/getenv/badge.svg?branch=master)](https://coveralls.io/github/powerman/getenv?branch=master)
+
+[![License MIT](https://img.shields.io/badge/license-MIT-royalblue.svg)](LICENSE)
+[![Go version](https://img.shields.io/github/go-mod/go-version/powerman/getenv?color=blue)](https://go.dev/)
+[![Test](https://img.shields.io/github/actions/workflow/status/powerman/getenv/test.yml?label=test)](https://github.com/powerman/getenv/actions/workflows/test.yml)
+[![Coverage Status](https://raw.githubusercontent.com/powerman/getenv/gh-badges/coverage.svg)](https://github.com/powerman/getenv/actions/workflows/test.yml)
+[![Go Report Card](https://goreportcard.com/badge/github.com/powerman/getenv)](https://goreportcard.com/report/github.com/powerman/getenv)
+[![Release](https://img.shields.io/github/v/release/powerman/getenv?color=blue)](https://github.com/powerman/getenv/releases/latest)
+[![Go Reference](https://pkg.go.dev/badge/github.com/powerman/getenv.svg)](https://pkg.go.dev/github.com/powerman/getenv)
+
+![Linux | amd64 arm64 armv7 ppc64le s390x riscv64](https://img.shields.io/badge/Linux-amd64%20arm64%20armv7%20ppc64le%20s390x%20riscv64-royalblue)
+![macOS | amd64 arm64](https://img.shields.io/badge/macOS-amd64%20arm64-royalblue)
+![Windows | amd64 arm64](https://img.shields.io/badge/Windows-amd64%20arm64-royalblue)
