@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### 🚀 Added
 
-- Add Must* functions with panic on missing/invalid env vars by @powerman in [77dbe1a]
+- Add Must\* functions with panic on missing/invalid env vars by @powerman in [77dbe1a]
 
 ### 📦️ Dependencies
 
