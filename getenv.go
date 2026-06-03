@@ -17,8 +17,8 @@ var (
 )
 
 // LastErr returns last error happens while parsing environment variable
-// by any function of this package. Following calls will return nil until
-// new error happens.
+// by any function of this package (except Must* functions).
+// Following calls will return nil until new error happens.
 func LastErr() error {
 	lastErrMu.Lock()
 	err := lastErr

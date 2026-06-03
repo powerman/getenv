@@ -9,11 +9,17 @@ import (
 	"github.com/powerman/getenv"
 )
 
+//nolint:paralleltest // Uses global LastErr — these checks would be racy in parallel.
 func Test(t *testing.T) {
-	t.Parallel()
+	t.Setenv("UNSET", "")
+	t.Setenv("EMPTY", "")
+	t.Setenv("BOOL", "false")
+	t.Setenv("DUR", "1m")
+	t.Setenv("FLOAT", "1.23")
+	t.Setenv("INT", "42")
+	t.Setenv("STR", "text")
 
 	t.Run("Bool", func(tt *testing.T) {
-		tt.Parallel()
 		t := check.T(tt)
 		t.Equal(getenv.Bool("UNSET", true), true)
 		t.Equal(getenv.Bool("EMPTY", true), true)
@@ -23,7 +29,6 @@ func Test(t *testing.T) {
 		t.Match(getenv.LastErr(), "parse")
 	})
 	t.Run("Dur", func(tt *testing.T) {
-		tt.Parallel()
 		t := check.T(tt)
 		t.Equal(getenv.Dur("UNSET", 3*time.Second), 3*time.Second)
 		t.Equal(getenv.Dur("EMPTY", 3*time.Second), 3*time.Second)
@@ -33,7 +38,6 @@ func Test(t *testing.T) {
 		t.Match(getenv.LastErr(), "parse")
 	})
 	t.Run("Float", func(tt *testing.T) {
-		tt.Parallel()
 		t := check.T(tt)
 		t.Equal(getenv.Float("UNSET", 0.5), 0.5)
 		t.Equal(getenv.Float("EMPTY", 0.5), 0.5)
@@ -43,7 +47,6 @@ func Test(t *testing.T) {
 		t.Match(getenv.LastErr(), "parse")
 	})
 	t.Run("Int", func(tt *testing.T) {
-		tt.Parallel()
 		t := check.T(tt)
 		t.Equal(getenv.Int("UNSET", 5), 5)
 		t.Equal(getenv.Int("EMPTY", 5), 5)
@@ -53,7 +56,6 @@ func Test(t *testing.T) {
 		t.Match(getenv.LastErr(), "parse")
 	})
 	t.Run("Str", func(tt *testing.T) {
-		tt.Parallel()
 		t := check.T(tt)
 		t.Equal(getenv.Str("UNSET", "def"), "def")
 		t.Equal(getenv.Str("EMPTY", "def"), "def")
