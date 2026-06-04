@@ -2,6 +2,7 @@
 package getenv
 
 import (
+	"errors"
 	"fmt"
 	"os"
 	"strconv"
@@ -13,7 +14,8 @@ const parseBits = 64
 
 var (
 	lastErr   error        //nolint:gochecknoglobals,errname // Exported.
-	lastErrMu sync.RWMutex //nolint:gochecknoglobals // Guards lastErr.
+	lastErrs  error        //nolint:gochecknoglobals // Exported as LastErrs.
+	lastErrMu sync.RWMutex //nolint:gochecknoglobals // Guards lastErr and lastErrs.
 )
 
 // LastErr returns last error happens while parsing environment variable
@@ -21,16 +23,30 @@ var (
 // Following calls will return nil until new error happens.
 func LastErr() error {
 	lastErrMu.Lock()
+	defer lastErrMu.Unlock()
 	err := lastErr
 	lastErr = nil
-	lastErrMu.Unlock()
+	lastErrs = nil
+	return err
+}
+
+// LastErrs returns all errors happened while parsing environment variables
+// by any function of this package (except Must* functions).
+// Following calls will return nil until new error happens.
+func LastErrs() error {
+	lastErrMu.Lock()
+	defer lastErrMu.Unlock()
+	err := lastErrs
+	lastErr = nil
+	lastErrs = nil
 	return err
 }
 
 func setLastErr(err error) {
 	lastErrMu.Lock()
+	defer lastErrMu.Unlock()
 	lastErr = err
-	lastErrMu.Unlock()
+	lastErrs = errors.Join(lastErrs, err)
 }
 
 // Bool returns value of environment variable name as a bool.

@@ -62,4 +62,26 @@ func Test(t *testing.T) {
 		t.Equal(getenv.Str("INT", "def"), "42")
 		t.Nil(getenv.LastErr())
 	})
+	t.Run("LastErrs", func(tt *testing.T) {
+		t := check.T(tt)
+		// No error initially.
+		t.Nil(getenv.LastErrs())
+		// After one error LastErrs returns it and clears both accumulators.
+		getenv.Bool("STR", true)
+		t.Match(getenv.LastErrs(), "parse")
+		t.Nil(getenv.LastErr())
+		t.Nil(getenv.LastErrs())
+		// After multiple errors LastErrs returns all of them joined.
+		getenv.Bool("STR", true)
+		getenv.Int("STR", 5)
+		t.Match(getenv.LastErrs(), "parse")
+		// LastErr is also cleared after calling LastErrs.
+		t.Nil(getenv.LastErr())
+		t.Nil(getenv.LastErrs())
+		// LastErr also clears LastErrs accumulator.
+		getenv.Bool("STR", true)
+		getenv.Int("STR", 5)
+		t.Match(getenv.LastErr(), "parse")
+		t.Nil(getenv.LastErrs())
+	})
 }
