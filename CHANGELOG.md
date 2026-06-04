@@ -5,6 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.3.0] - 2026-06-04
+
+### 🚀 Added
+
+- Add Scrub function to remove env vars by prefix by @powerman in [266210e]
+
+[0.3.0]: https://github.com/powerman/getenv/compare/v0.2.0..v0.3.0
+[266210e]: https://github.com/powerman/getenv/commit/266210e1ce75267946139494f9ca97e63b76ddb2
+
 ## [0.2.0] - 2026-06-03
 
 ### 🚀 Added
