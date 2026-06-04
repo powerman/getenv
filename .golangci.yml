@@ -16,6 +16,7 @@ linters:
     - lll # Questionable (sometimes long lines improve readability).
     - nlreturn # Questionable (often no blank line before return improve readability).
     - nonamedreturns # Questionable (named return act as a documentation).
+    - paralleltest # Most tests in this project are sequential.
     - perfsprint # Questionable (force performance over readability and sometimes safety).
     - varnamelen
     - wrapcheck # Questionable (see https://github.com/tomarrell/wrapcheck/issues/1).

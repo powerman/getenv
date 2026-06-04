@@ -9,7 +9,6 @@ import (
 	"github.com/powerman/getenv"
 )
 
-//nolint:paralleltest // Uses global LastErr — these checks would be racy in parallel.
 func Test(t *testing.T) {
 	t.Setenv("UNSET", "")
 	t.Setenv("EMPTY", "")

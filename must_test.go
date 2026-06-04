@@ -9,7 +9,6 @@ import (
 	"github.com/powerman/getenv"
 )
 
-//nolint:paralleltest // Must* functions are tested sequentially for simplicity.
 func TestMustBool(t *testing.T) {
 	t.Run("unset", func(tt *testing.T) {
 		t := check.T(tt)
@@ -32,7 +31,6 @@ func TestMustBool(t *testing.T) {
 	})
 }
 
-//nolint:paralleltest // Must* functions are tested sequentially for simplicity.
 func TestMustDur(t *testing.T) {
 	t.Run("unset", func(tt *testing.T) {
 		t := check.T(tt)
@@ -50,7 +48,6 @@ func TestMustDur(t *testing.T) {
 	})
 }
 
-//nolint:paralleltest // Must* functions are tested sequentially for simplicity.
 func TestMustFloat(t *testing.T) {
 	t.Run("unset", func(tt *testing.T) {
 		t := check.T(tt)
@@ -68,7 +65,6 @@ func TestMustFloat(t *testing.T) {
 	})
 }
 
-//nolint:paralleltest // Must* functions are tested sequentially for simplicity.
 func TestMustInt(t *testing.T) {
 	t.Run("unset", func(tt *testing.T) {
 		t := check.T(tt)
@@ -86,7 +82,6 @@ func TestMustInt(t *testing.T) {
 	})
 }
 
-//nolint:paralleltest // Must* functions are tested sequentially for simplicity.
 func TestMustStr(t *testing.T) {
 	t.Run("unset", func(tt *testing.T) {
 		t := check.T(tt)
