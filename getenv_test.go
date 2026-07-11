@@ -19,7 +19,7 @@ func Test(t *testing.T) {
 	t.Setenv("STR", "text")
 
 	t.Run("Bool", func(tt *testing.T) {
-		t := check.T(tt)
+		t := check.Must(tt)
 		t.Equal(getenv.Bool("UNSET", true), true)
 		t.Equal(getenv.Bool("EMPTY", true), true)
 		t.Equal(getenv.Bool("BOOL", true), false)
@@ -28,7 +28,7 @@ func Test(t *testing.T) {
 		t.Match(getenv.LastErr(), "parse")
 	})
 	t.Run("Dur", func(tt *testing.T) {
-		t := check.T(tt)
+		t := check.Must(tt)
 		t.Equal(getenv.Dur("UNSET", 3*time.Second), 3*time.Second)
 		t.Equal(getenv.Dur("EMPTY", 3*time.Second), 3*time.Second)
 		t.Equal(getenv.Dur("DUR", 3*time.Second), 60*time.Second)
@@ -37,7 +37,7 @@ func Test(t *testing.T) {
 		t.Match(getenv.LastErr(), "parse")
 	})
 	t.Run("Float", func(tt *testing.T) {
-		t := check.T(tt)
+		t := check.Must(tt)
 		t.Equal(getenv.Float("UNSET", 0.5), 0.5)
 		t.Equal(getenv.Float("EMPTY", 0.5), 0.5)
 		t.Equal(getenv.Float("FLOAT", 0.5), 1.23)
@@ -46,7 +46,7 @@ func Test(t *testing.T) {
 		t.Match(getenv.LastErr(), "parse")
 	})
 	t.Run("Int", func(tt *testing.T) {
-		t := check.T(tt)
+		t := check.Must(tt)
 		t.Equal(getenv.Int("UNSET", 5), 5)
 		t.Equal(getenv.Int("EMPTY", 5), 5)
 		t.Equal(getenv.Int("INT", 5), 42)
@@ -55,7 +55,7 @@ func Test(t *testing.T) {
 		t.Match(getenv.LastErr(), "parse")
 	})
 	t.Run("Str", func(tt *testing.T) {
-		t := check.T(tt)
+		t := check.Must(tt)
 		t.Equal(getenv.Str("UNSET", "def"), "def")
 		t.Equal(getenv.Str("EMPTY", "def"), "def")
 		t.Equal(getenv.Str("STR", "def"), "text")
@@ -63,7 +63,7 @@ func Test(t *testing.T) {
 		t.Nil(getenv.LastErr())
 	})
 	t.Run("LastErrs", func(tt *testing.T) {
-		t := check.T(tt)
+		t := check.Must(tt)
 		// No error initially.
 		t.Nil(getenv.LastErrs())
 		// After one error LastErrs returns it and clears both accumulators.

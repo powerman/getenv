@@ -11,7 +11,7 @@ import (
 
 func TestScrub(tt *testing.T) {
 	const prefix = "GETENV_SCRUB_TEST_"
-	t := check.T(tt)
+	t := check.Must(tt)
 
 	tt.Setenv(prefix+"KEEP", "")         // Empty value — still removed.
 	tt.Setenv(prefix+"SECRET", "s3cret") // Typical credential.
@@ -35,13 +35,13 @@ func TestScrub(tt *testing.T) {
 }
 
 func TestScrubEmptyPrefix(tt *testing.T) {
-	t := check.T(tt)
+	t := check.Must(tt)
 	t.PanicMatch(func() { getenv.Scrub("") }, "empty prefix")
 }
 
 func TestScrubNoMatch(tt *testing.T) {
 	const prefix = "GETENV_SCRUB_NOMATCH_"
-	t := check.T(tt)
+	t := check.Must(tt)
 
 	tt.Setenv("GETENV_UNRELATED", "keep")
 
