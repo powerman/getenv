@@ -5,6 +5,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.4.1] - 2026-07-12
+
+### 📦️ Dependencies
+
+- **(deps)** Upgrade check dependency to v1.13.0 by @powerman in [51a8541]
+- **(deps)** Upgrade actions/checkout from v6 to v7 by @powerman in [b9e5848]
+
+[0.4.1]: https://github.com/powerman/getenv/compare/v0.4.0..v0.4.1
+[51a8541]: https://github.com/powerman/getenv/commit/51a8541c8beff766858551cc3f0775f559ee7792
+[b9e5848]: https://github.com/powerman/getenv/commit/b9e584828dec261e4fa85268ded94f886f986e0a
+
 ## [0.4.0] - 2026-06-04
 
 ### 🚀 Added
