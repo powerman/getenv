@@ -5,6 +5,26 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.5.0] - 2026-10-28
+
+### 🔔 Changed
+
+- Require Go 1.26 by @powerman in [07f2df5]
+
+### 📦️ Dependencies
+
+- **(deps)** Upgrade go and golangci-lint by @powerman in [24912c0]
+- **(deps)** Upgrade go modules by @powerman in [8a4078f]
+- **(deps)** Upgrade go and golangci-lint by @powerman in [31dc29b]
+- **(deps)** Mise up by @powerman in [bea5d89]
+
+[0.5.0]: https://github.com/powerman/getenv/compare/v0.4.1..v0.5.0
+[24912c0]: https://github.com/powerman/getenv/commit/24912c00dc49eca6ad6469601147e5410324d0d6
+[8a4078f]: https://github.com/powerman/getenv/commit/8a4078fcabb41d003d0bf390ba4bd19be770619e
+[31dc29b]: https://github.com/powerman/getenv/commit/31dc29b076fd75fd374deef2e6c447c01e2ae4df
+[07f2df5]: https://github.com/powerman/getenv/commit/07f2df5660a84842bc95661f0d131b31004f1ce3
+[bea5d89]: https://github.com/powerman/getenv/commit/bea5d89c04aed29e73003b2a07bad66f9dd831f6
+
 ## [0.4.1] - 2026-07-12
 
 ### 📦️ Dependencies
